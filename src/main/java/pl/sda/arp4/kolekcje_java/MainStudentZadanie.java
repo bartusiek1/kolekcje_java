@@ -25,6 +25,26 @@ public class MainStudentZadanie {
         System.out.println("Mapa: " + student);
         System.out.println();
 
+        // mapa iteracja:
+// 1. Klucze
+        System.out.println("Klucze:");
+        for (Long indeks : student.keySet()) {
+            System.out.print(indeks + " ");
+        }
+        System.out.println();
+
+// 2. Wartości
+        System.out.println("Wartości:");
+        for (Student Student : student.values()) {
+            System.out.print(student + " ");
+        }
+        System.out.println();
+
+// 3. Pary Klucz-Wartość - Entry - Wpis/Rekord
+        for (Map.Entry<Long, Student> wpis : student.entrySet()) {
+
+        }
+
     }
 }
 

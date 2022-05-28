@@ -6,4 +6,4 @@ package pl.sda.arp4.kolekcje_java;
             super(komunikat);
         }
     }
-}
+
