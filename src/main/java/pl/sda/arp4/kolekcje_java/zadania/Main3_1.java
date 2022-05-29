@@ -1,8 +1,8 @@
-package pl.sda.arp4.kolekcje_java;
+package pl.sda.arp4.kolekcje_java.zadania;
 
 import java.util.Scanner;
 
-public class Main3_3 {
+public class Main3_1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj literę: ");
@@ -14,17 +14,10 @@ public class Main3_3 {
             if (znak >= 'A' && znak <= 'F') {
                 System.out.println("Litera jest ok!");
 
-                // A3
-                // AJaLubiePlacki
-                // AJ
-                // wytnij pierwszą literę,
-                // ze zmiennej 'slowo' wez wszystkie litery zaczynając od indeksu 1
-                String wszystkoPozaPierwszymZnakiem = slowo.substring(1);
-                try {
-                    // scanner -> slowo -> slowo.equals('dodaj')
-                    int liczba = Integer.parseInt(wszystkoPozaPierwszymZnakiem);
+                char znakDrugi = slowo.charAt(1);
+                if(znakDrugi >= '0' && znakDrugi <= '9'){
                     System.out.println("Znak drugi jest cyfrą!");
-                } catch (NumberFormatException nfe) {
+                }else{
                     System.out.println("Znak drugi nie jest cyfrą!");
                 }
             } else {
