@@ -30,7 +30,7 @@ public class Dziennik {
     }
 
     public void wypiszListeStudentow() {
-        System.out.println("Lista studentó: ");
+        System.out.println("Lista studentów: ");
         for (Student student : mapaStudentow.values()) {
             System.out.println(student);
         }
@@ -101,12 +101,5 @@ public class Dziennik {
         return listaZagrozonych;
 
     }
-
-
-
-
-
-
-
 }
 
