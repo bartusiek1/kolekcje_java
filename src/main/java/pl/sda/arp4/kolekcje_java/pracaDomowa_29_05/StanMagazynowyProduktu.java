@@ -1,15 +1,18 @@
 package pl.sda.arp4.kolekcje_java.pracaDomowa_29_05;
 
-public class Product {
+public class StanMagazynowyProduktu {
 
     private String nazwa;
     private Double ilosc;
     private String jednostka;
 
-    public Product(String nazwa, Double ilosc, String jednostka) {
+    public StanMagazynowyProduktu(String nazwa, Double ilosc, String jednostka) {
         this.nazwa = nazwa;
         this.ilosc = ilosc;
         this.jednostka = jednostka;
+    }
+
+    public StanMagazynowyProduktu(String nazwa, double v, Jednostka jednostka) {
     }
 
     public String getNazwa() {
@@ -36,7 +39,7 @@ public class Product {
         this.jednostka = jednostka;
     }
 
-    public Product(String nazwa, String jednostka) {
+    public StanMagazynowyProduktu(String nazwa, String jednostka) {
         this.nazwa = nazwa;
         this.jednostka = jednostka;
 
@@ -46,7 +49,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "StanMagazynowyProduktu{" +
                 "nazwa='" + nazwa + '\'' +
                 ", ilosc=" + ilosc +
                 ", jednostka='" + jednostka + '\'' +

@@ -17,22 +17,21 @@ import java.util.Set;
 public class MainSetSlowa {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Wpisz linię tekstu");
-        String tekst = scanner.nextLine();
+        System.out.println("Wpisz zdanie");
+            String tekstWpisany = scanner.nextLine();
+            String tekstBezPrzecinkow = tekstWpisany.replaceAll(",", "");
+            String tekstBezPrzecinkowIKropek = tekstBezPrzecinkow.replaceAll("[.]", "");
 
-        System.out.println(tekst);
+//        String[] tablicaSłów = tekstBezPrzecinkowIKropek.split(" ");
+//        Set<String> zbiorSlow = new HashSet<>(Arrays.asList(tablicaSłów));
+            Set<String> zbiorSlow = new HashSet<>(Arrays.asList(tekstBezPrzecinkowIKropek.split(" ")));
 
-        String tekstBezPrzecinkow = tekst.replaceAll(",", "");
-        String tekstBezPrzecikowIKropek = tekstBezPrzecinkow.replaceAll(".", "");
+            System.out.println(zbiorSlow);
 
-        String[] tablicaSlow = tekstBezPrzecikowIKropek.split(" ");
-        Set<String> zbiorSlow = new HashSet<>(Arrays.asList(tekstBezPrzecikowIKropek));
-        System.out.println(zbiorSlow);
-
-
-
-
+            // ala ma kota a kot ma ale
+            //            ^
+            //       ^
+        }
     }
-}

@@ -11,54 +11,82 @@ package pl.sda.arp4.kolekcje_java.pracaDomowa_29_05;
 //    zwrocListeProduktowKtorychIloscJestMniejszaNiz (parametr: ilosc)
 
 
-import pl.sda.arp4.kolekcje_java.dziennik.Student;
-
 import java.util.*;
 
 public class Magazyn {
 
-    private Map<String, Product> mapaProduktow = new HashMap<>();
+        private Map<String, StanMagazynowyProduktu> mapaStanu = new HashMap<>();
 
-
-    public void dodajProdukt (String nazwa, String jednostka) {
-        if (mapaProduktow.containsKey(nazwa)) {
-            System.err.println("Podany produkt już istnieje");
-        } else {
-            mapaProduktow.put(nazwa, new Product(nazwa, jednostka));
+        public void dodajProdukt(String nazwa, Jednostka jednostka) {
+            if (mapaStanu.containsKey(nazwa)) {
+                System.err.println("Produkt istnieje");
+            } else {
+           mapaStanu.put(nazwa, new StanMagazynowyProduktu(nazwa, 0.0, jednostka));
+                System.out.println("Produkt dodano");
+            }
         }
-    }
-    public void wypiszWszystkieProdukty() {
-        System.out.println("Lista produktów:");
-        for (Product product : mapaProduktow.values()) {
-            System.out.println(product);
-        }
-    }
 
-    public void usunProdukt (String nazwa) {
-        if (mapaProduktow.containsKey(nazwa)) {
-            mapaProduktow.remove(nazwa);
-            System.out.println("Produkt został usunięty");
-        } else {
-            System.err.println("Wskazany produkt nie istnieje");
-        }
-    }
 
-    public Optional<Product> zwrocProdukt (String nazwa) {
-        if (mapaProduktow.containsKey(nazwa)) {
-            System.out.println("Znaleziono produkt: " + nazwa);
-            return Optional.of(mapaProduktow.get(nazwa));
-        } else {
-            System.out.println("Produkt o podanej nazwie nie istnieje");
+        public void wypiszWszystkieProdukty() {
+            System.out.println("Produkty:");
+            for (StanMagazynowyProduktu value : mapaStanu.values()) {
+                System.out.println(value);
+            }
+        }
+
+        public void usunProdukt(String nazwa) {
+            if (mapaStanu.containsKey(nazwa)) {
+                mapaStanu.remove(nazwa);
+                System.out.println("Produkt usunięty");
+            } else {
+                System.out.println("Produkt nie istnieje");
+            }
+        }
+
+        public Optional<StanMagazynowyProduktu> zwrocProdukt(String nazwa) {
+            if (mapaStanu.containsKey(nazwa)) {
+                return Optional.of(mapaStanu.get(nazwa));
+            }
             return Optional.empty();
         }
-    }
+//    - zwiekszStanMagazynowy (parametry: nazwa, ilość)
+// * - zmniejszStanMagazynowy (parametry: nazwa, ilość)
 
-    public void zwiekszStanMagazynowy (String nazwa, Double ilosc) {
-        if (!mapaProduktow.containsKey(nazwa)) {
-            System.err.println("Wskazany produkt nie istnieje");
-        } else {
-            Product product = mapaProduktow.get(nazwa);
-            product.setIlosc(ilosc);
+        public void zwiekszStanMagazynowy(String nazwa, double ilsocOIleZwiekszyc) {
+            if (!mapaStanu.containsKey(nazwa)) {
+                System.out.println("Produkt nie istnieje");
+                return;
+            }
+
+            StanMagazynowyProduktu stanMagazynowyProduktu = mapaStanu.get(nazwa);
+            // ZWIĘKSZ stan magazynowy, mamy do obecnego stanu dodać nową ilość
+            stanMagazynowyProduktu.setIlosc(stanMagazynowyProduktu.getIlosc() + ilsocOIleZwiekszyc);
+        }
+
+        public void zmniejszStanMagazynowy(String nazwa, double oIleZmniejszyc) {
+            // jeśli nie ma produktu
+            if (!mapaStanu.containsKey(nazwa)) {
+                System.out.println("Produkt nie istnieje");
+                return;
+            }
+            // jeśli produkt istnieje ale brakuje ilosci, to nie odejmujemy
+            double roznicaStanuIlosci = mapaStanu.get(nazwa).getIlosc() - oIleZmniejszyc;
+            if (roznicaStanuIlosci < 0) {
+                System.out.println("Niedostateczna ilość produktu");
+                return;
+            }
+
+            StanMagazynowyProduktu stanMagazynowyProduktu = mapaStanu.get(nazwa);
+            stanMagazynowyProduktu.setIlosc(stanMagazynowyProduktu.getIlosc() - oIleZmniejszyc);
+        }
+
+        public List<StanMagazynowyProduktu> zwrocListeProduktowKtorychIloscJestMniejszaNiz(int ilosc) {
+            List<StanMagazynowyProduktu> wynikowaLista = new ArrayList<>();
+            for (StanMagazynowyProduktu produkt : mapaStanu.values()) {
+                if (produkt.getIlosc() < ilosc) {
+                    wynikowaLista.add(produkt);
+                }
+            }
+            return wynikowaLista;
         }
     }
-}
